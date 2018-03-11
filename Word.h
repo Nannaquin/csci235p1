@@ -40,7 +40,7 @@ class Word {
 		@post: If the guess is correct, solveState is true; If not, remains false.
 		@param: inStr  The incoming guess from the player.
 		@return: If guess is correct, return true. Otherwise, return false.*/
-		bool guess();
+		bool guess(string inStr);
 	
 	
 	private:

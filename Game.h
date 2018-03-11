@@ -49,10 +49,11 @@ Each successive win levelwise will incriment a counter.
 
 #include<iostream>
 #include<string>
+#include<vector>
 #include"Level.h"
 #include"Player.h"
 
-typedef Level* lPtr;
+//typedef Level* lPtr;
 class Game {
 	public:
 		/**Starts new game.
@@ -70,6 +71,12 @@ class Game {
 		/**Parses the data */
 		void parse(string source);
 		
+		/**Loads collected words into levels */
+		void makeLevels(vector<string> wordCol);
+		
+		/** Sorts the generated levels by difficulty*/
+		void sortLevels();
+		
 		/**Loads save data if available. */
 		bool load();
 
@@ -77,7 +84,8 @@ class Game {
 	private:
 		
 		
-		lPtr levelArr;
+	//	lPtr levelArr;
+		vector<Level> lVec;
 		int numLevels;
 		Player player;
 };

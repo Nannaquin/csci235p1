@@ -2,8 +2,10 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
+#include<vector>
 #include "Word.h"
-typedef Word* wPtr;
+
+//typedef Word* wPtr;
 
 
 
@@ -15,9 +17,14 @@ class Level {
 		@post: Level will have an randomized array of jumbled words.
 		*/
 		Level(int inLen);
+		
+		/** Empty */
+		
+		Level();
+		
 
 		
-		void setLen();
+		void setLen(int inVal);
 		
 		void setTotal();
 		
@@ -31,7 +38,7 @@ class Level {
 		(so this wont call a non-existant word).
 		@post: A word will be pulled.
 		@param: wordNum  the word to be retrieved. */
-		Word getWord(int wordNum);
+		string getWord(int wordNum, bool isScram);
 		
 		/** Checks potential next word against
 		the total amount of words.
@@ -49,22 +56,23 @@ class Level {
 		@post: Ideally, a new word is added to wordArr
 		@param: inWord  The Word to be added.
 		@return: True if successful, otherwise false. */
-		bool addWord(Word inWord);
+//		bool addWord(Word inWord);
+		bool addWord(string inWord);
 		
-		/** Mixes the order of the words.
+		/** Mixes the order of the words. 
 		@pre: the array of words has already been populated.
-		@post: The order of words will be randomized, in comparison to the original order.
-		@param: inArr  Our original order of words for the current level. */
-		void scrambleOrder(wPtr inArr);
+		@post: The order of words will be randomized, in comparison to the original order. */
+		void scrambleOrder();
 	
 	private:
 		
 		//The current level. Will determine what words are summoned. 
 		int len;
 		//The list of words
-		wPtr wordArr;
+//		wPtr wordArr;
+		vector<Word> wVec;
 		//The number of words in the wordArr
-		int wordTotal;
+		int total;
 	
 };
 #endif
