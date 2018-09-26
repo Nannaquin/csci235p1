@@ -1,19 +1,16 @@
 /**file main.cpp*/
 #include<iostream>
+#include<fstream>
 #include<string>
-
 #include"Game.h"
-//#include"Level.h"
-//#include"Word.h"
-//#include"Player.h"
 using namespace std;
 
+/**Checks to see if the file is actually loadable. */
+bool checkFile(string filename);
 
-/**Preload: Checks if there is a save file. */
-
-
-
+/**Main Menu/Jumping Off Point */
 int main() {
+	cout << "\n\n\n\n\n" << endl;
 
 	int choice = -1;
 	
@@ -30,6 +27,7 @@ int main() {
 			cin.ignore();
 			cout << "\nInvalid input. 1 or 0, please." << endl;
 		}
+		cin.ignore(100, '\n'); 
 
 		switch(choice) {
 
@@ -42,12 +40,14 @@ int main() {
 				cout << "saved game." << endl;
 				
 				//maybe error checking? Most anything can be a string inputwise
-				cin >> filename;
+				getline(cin, filename);
 				if(filename.empty()==false) {
-					Game game(filename);
+					if(checkFile(filename) == true) {
+						Game game(filename);
+					}
 				}
 				else {
-					//Game();	
+					Game();	
 				}
 			}
 				break;
@@ -64,3 +64,18 @@ int main() {
 } // end of main
 
 
+bool checkFile(string filename) {
+	
+	bool retState = false;
+	ifstream checkThis(filename.c_str());
+	if(checkThis.is_open()) { 
+		retState = true;
+		checkThis.close();
+	}
+	else { 
+		cout << "[CANNOT FIND/OPEN FILE]" << endl;
+	}
+	
+	return retState;
+	
+}

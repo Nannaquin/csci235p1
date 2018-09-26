@@ -12,37 +12,33 @@ class Player {
 	public:
 	
 		/**
-		@pre: Game has been called.
-		@post: Player will either be a clean slate
-		or loaded from previous save file.
-		@param: load  If true, engage in loading procedure.
-		Otherwise, call setNew.*/
-		Player(bool load);
+		@pre: An old save game has been loaded.
+		@post: Save data regarding player will be retrieved.
+		@param: inStr  the current best solved word
+				inWon  amount of levels won
+				inScr  current score
+				inLiv  Amount of remaining lives
+				inLin  Amount of remaining life lines*/
+		Player(string inStr, int inWon, int inScr, int inLiv, int inLin);
 		
-		/**Generic Constructor */
+		/**New Game Constructor
+		@pre: New Game is being started.
+		@post: All member vars will be initialized.*/
 		Player();
-		
-		/**Sets up member variables in event of new game.
-		@pre: A new game has been started. 
-		@post: All member variables will be set to beginning
-		values. */
-		void setNew();
-		
-		//==============
-		// make set load?
+	
 		
 		//Save Loading Specific
 		/**For the case of loading a save, or to update
 		during gameplay. */
 		void setCurrentBest(string inStr);
 		/**For the case of loading a save. */
-		void setLevelsWon(int inVal);
+		void setLevelsWon(int & inVal);
 		/**For the case of loading a save. */
-		void setScore(int inVal);
+		void setScore(int & inVal);
 		/**For the case of loading a save. */
-		void setLives(int inVal);
+		void setLives(int & inVal);
 		/**For the case of loading a save. */
-		void setLifeLines(int inVal);
+		void setLifeLines(int & inVal);
 		
 		//For Saving the Game or Displaying
 		/**For the case of saving */
@@ -62,11 +58,6 @@ class Player {
 		@pre: An incorrect guess has been made.
 		@post: Lives will be decremented. */
 		void decrLives();
-		
-		/**For when a lifeline is used.
-		@pre: A request to expend a lifeline was successful		
-		@post: lifeLines will be decremented.*/
-		void decrLifeLines();
 		
 		/** Attempts to use a lifeline.
 		@pre: Player has requested a lifeline be used.
